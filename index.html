@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A short-term loan to get Recovery Tracker in front of J&J</title>
+  <meta name="description" content="A personal, repayable loan to help Soren DeOrlow bring Recovery Tracker to a Johnson & Johnson pitch on August 19." />
+
+  <!-- ============================================================= -->
+  <!--  ⚙️  EDIT ME:  Stripe Payment Links                            -->
+  <!--  1. Create Payment Links in your Stripe dashboard.            -->
+  <!--  2. Paste the URLs below. Leave "" to hide a tier.            -->
+  <!--  3. Set each link's success URL to:                           -->
+  <!--        https://YOUR-DOMAIN/?success=true                      -->
+  <!-- ============================================================= -->
+  <script>
+    window.CONFIG = {
+      goal: 5000,          // fundraising goal in dollars
+      raisedManual: 0,     // update by hand after each contribution
+      supporters: 0,       // number of people who've helped (0 hides social proof)
+      links: {
+        "250":    "",      // e.g. "https://buy.stripe.com/xxxxx"
+        "500":    "",
+        "1000":   "",
+        "custom": ""       // Stripe "customer chooses price" link
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --navy:   #0A1428;
+      --ink:    #10233b;
+      --slate:  #4a5a6e;
+      --teal:   #0f9d8f;
+      --teal-d: #0b7d72;
+      --mint:   #eaf7f4;
+      --paper:  #fbfcfc;
+      --card:   #ffffff;
+      --line:   #e5ebe9;
+      --radius: 16px;
+      --shadow: 0 8px 30px rgba(10, 20, 40, 0.08);
+      --shadow-lg: 0 20px 50px rgba(10, 20, 40, 0.14);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+      font-size: 18px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--teal-d); }
+
+    .wrap { max-width: 680px; margin: 0 auto; padding: 0 22px; }
+
+    /* ---- Buttons ---- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      background: var(--teal); color: #fff; font-weight: 650; font-size: 1.05rem;
+      border: none; border-radius: 999px; padding: 16px 30px; cursor: pointer;
+      text-decoration: none; transition: transform .12s ease, background .15s ease, box-shadow .15s ease;
+      box-shadow: 0 6px 18px rgba(15, 157, 143, 0.28);
+      width: 100%;
+    }
+    .btn:hover { background: var(--teal-d); transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn.secondary {
+      background: #fff; color: var(--teal-d); border: 1.5px solid var(--line); box-shadow: none;
+    }
+    .btn.secondary:hover { border-color: var(--teal); background: var(--mint); }
+
+    /* ---- Hero ---- */
+    header.hero {
+      background: linear-gradient(170deg, #0A1428 0%, #123152 60%, #0f5d63 130%);
+      color: #fff; padding: 70px 0 64px; position: relative;
+    }
+    .hero .eyebrow {
+      display: inline-block; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase;
+      color: #7fe9d8; font-weight: 650; margin-bottom: 18px;
+      border: 1px solid rgba(127,233,216,.35); padding: 6px 14px; border-radius: 999px;
+    }
+    .hero h1 {
+      font-size: 2.35rem; line-height: 1.12; letter-spacing: -0.02em; font-weight: 750;
+      margin-bottom: 18px;
+    }
+    .hero p.sub { font-size: 1.15rem; color: #cfe0e6; max-width: 33ch; }
+    .hero .cta-row { margin-top: 30px; max-width: 340px; }
+
+    /* ---- Sections ---- */
+    section { padding: 54px 0; }
+    section.tight { padding: 40px 0; }
+    h2 {
+      font-size: 1.55rem; letter-spacing: -0.01em; line-height: 1.2; font-weight: 720;
+      color: var(--navy); margin-bottom: 8px;
+    }
+    h2 + .lead { color: var(--slate); margin-bottom: 26px; font-size: 1.02rem; }
+    p + p { margin-top: 1rem; }
+    .story p { color: #2b3b50; }
+
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 26px; box-shadow: var(--shadow);
+    }
+
+    /* ---- Progress ---- */
+    .progress-card { text-align: center; }
+    .progress-nums { display: flex; align-items: baseline; justify-content: center; gap: .5ch; flex-wrap: wrap; }
+    .progress-nums .raised { font-size: 2.1rem; font-weight: 760; color: var(--navy); letter-spacing: -.02em; }
+    .progress-nums .goal { color: var(--slate); font-size: 1.05rem; }
+    .bar { height: 12px; background: var(--mint); border-radius: 999px; overflow: hidden; margin: 16px 0 10px; }
+    .bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--teal), #29c3ae); border-radius: 999px; width: 0; transition: width .8s ease; }
+    .supporters { color: var(--slate); font-size: .95rem; }
+
+    /* ---- Product ---- */
+    .product-shot { border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow); margin-top: 22px; }
+    .oneliner { font-size: 1.15rem; color: var(--ink); font-weight: 550; }
+
+    /* ---- Founder ---- */
+    .founder { display: flex; gap: 18px; align-items: center; margin-bottom: 26px; }
+    .founder img { width: 76px; height: 76px; border-radius: 50%; object-fit: cover; flex: none; border: 3px solid #fff; box-shadow: var(--shadow); }
+    .founder .name { font-weight: 700; color: var(--navy); font-size: 1.05rem; }
+    .founder .role { color: var(--slate); font-size: .92rem; }
+
+    /* ---- Use of funds ---- */
+    ul.funds { list-style: none; margin-top: 6px; }
+    ul.funds li { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    ul.funds li:last-child { border-bottom: none; }
+    ul.funds .amt { font-weight: 700; color: var(--teal-d); flex: none; width: 74px; }
+    ul.funds .desc strong { color: var(--navy); }
+    ul.funds .desc span { color: var(--slate); display: block; font-size: .95rem; }
+
+    /* ---- Repayment ---- */
+    .terms { background: var(--mint); border: 1px solid #d5ece7; border-radius: var(--radius); padding: 26px; }
+    .terms h2 { display: flex; align-items: center; gap: 10px; }
+    .terms ul { list-style: none; margin-top: 8px; }
+    .terms li { padding: 9px 0 9px 30px; position: relative; color: var(--ink); }
+    .terms li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: 800; }
+
+    /* ---- Amount picker ---- */
+    .amounts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 8px; }
+    .amt-btn {
+      background: #fff; border: 1.5px solid var(--line); border-radius: 14px; padding: 20px 10px;
+      font-size: 1.25rem; font-weight: 700; color: var(--navy); cursor: pointer; text-align: center;
+      transition: all .13s ease; text-decoration: none; display: block;
+    }
+    .amt-btn small { display: block; font-size: .72rem; font-weight: 600; color: var(--slate); letter-spacing: .04em; text-transform: uppercase; margin-top: 4px; }
+    .amt-btn:hover { border-color: var(--teal); background: var(--mint); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .amt-btn.custom { color: var(--teal-d); }
+    .disabled-note { font-size: .82rem; color: #b04b3f; text-align: center; margin-top: 4px; }
+
+    /* ---- FAQ ---- */
+    .faq details {
+      border-bottom: 1px solid var(--line); padding: 4px 0;
+    }
+    .faq summary {
+      list-style: none; cursor: pointer; padding: 16px 34px 16px 0; font-weight: 620; color: var(--navy);
+      position: relative; font-size: 1.05rem;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+      font-size: 1.5rem; color: var(--teal); font-weight: 400; transition: transform .2s ease;
+    }
+    .faq details[open] summary::after { content: "−"; }
+    .faq .answer { padding: 0 0 18px; color: var(--slate); }
+
+    /* ---- Footer ---- */
+    footer {
+      background: var(--navy); color: #aebfce; padding: 44px 0 120px; margin-top: 20px; font-size: .92rem;
+    }
+    footer .name { color: #fff; font-weight: 650; font-size: 1.05rem; margin-bottom: 4px; }
+    footer a { color: #7fe9d8; }
+    footer .disclaimer {
+      margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1);
+      font-size: .82rem; color: #7d90a3; line-height: 1.55;
+    }
+
+    /* ---- Sticky mobile CTA ---- */
+    .sticky-cta {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+      background: rgba(251,252,252,.92); backdrop-filter: blur(10px);
+      border-top: 1px solid var(--line); padding: 12px 22px calc(12px + env(safe-area-inset-bottom));
+      transform: translateY(120%); transition: transform .3s ease;
+    }
+    .sticky-cta.show { transform: translateY(0); }
+    .sticky-cta .btn { max-width: 680px; margin: 0 auto; }
+
+    /* ---- Success banner ---- */
+    .success-banner {
+      display: none; background: var(--teal); color: #fff; text-align: center;
+      padding: 16px 22px; font-weight: 600;
+    }
+    .success-banner.show { display: block; }
+
+    /* ---- Responsive up ---- */
+    @media (min-width: 620px) {
+      .hero h1 { font-size: 2.9rem; }
+      .amounts { grid-template-columns: repeat(4, 1fr); }
+      .amt-btn.custom { grid-column: span 4; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Success state (Stripe redirects here with ?success=true) -->
+  <div class="success-banner" id="successBanner">
+    🎉 Thank you — your contribution came through. It means more than you know. I'll be in touch personally.
+  </div>
+
+  <!-- ============================== HERO ============================== -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">A personal ask · repayable</span>
+      <h1>Help me get Recovery Tracker in the room with Johnson &amp; Johnson.</h1>
+      <p class="sub">On August 19, I'm pitching the platform I've spent the last year building. I need a short runway to make it count — and I'll pay every dollar back.</p>
+      <div class="cta-row">
+        <a href="#give" class="btn">See how you can help →</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================== PROGRESS ============================== -->
+  <section class="tight">
+    <div class="wrap">
+      <div class="card progress-card">
+        <div class="progress-nums">
+          <span class="raised" id="raisedLabel">$0</span>
+          <span class="goal" id="goalLabel">raised of $5,000 goal</span>
+        </div>
+        <div class="bar"><span id="barFill"></span></div>
+        <div class="supporters" id="supportersLabel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== STORY ============================== -->
+  <section class="story">
+    <div class="wrap">
+      <div class="founder">
+        <img src="assets/founder-soren.png" alt="Soren DeOrlow" />
+        <div>
+          <div class="name">Soren DeOrlow</div>
+          <div class="role">Founder · Recovery Tracker</div>
+        </div>
+      </div>
+
+      <h2>Why I'm asking you specifically</h2>
+      <p class="lead">You're getting this because you know me — not because I'm running a campaign.</p>
+
+      <p>For the last year I've been building <strong>Recovery Tracker</strong>: software that watches over patients after outpatient surgery, when 90% of recovery happens at home and nobody is looking. Surgeons see their patients for fifteen minutes at a follow-up; the app is there for the other three weeks — flagging infection, poor healing, and anxiety before they become an ER visit.</p>
+
+      <p>It's real. There's a working product, an AI recovery assistant, and a pilot lined up with a Beverly Hills surgeon. Now the biggest door I've knocked on has cracked open: <strong>a meeting with Johnson &amp; Johnson on August 19.</strong></p>
+
+      <p>I've bootstrapped this the whole way. I don't want to walk into that room having cut corners on the last mile because of cash flow. That's the entire reason for this ask — a small, short-term bridge, from people I trust, to show up to this moment at full strength.</p>
+    </div>
+  </section>
+
+  <!-- ============================== PRODUCT ============================== -->
+  <section class="tight">
+    <div class="wrap">
+      <h2>What Recovery Tracker is</h2>
+      <p class="oneliner">A continuity-of-care platform for outpatient surgery — an AI recovery assistant for patients and a real-time dashboard for surgeons, so complications get caught early instead of late.</p>
+      <img class="product-shot" src="assets/product-dashboard.png" alt="Recovery Tracker surgeon dashboard showing patient recovery progress" />
+    </div>
+  </section>
+
+  <!-- ============================== USE OF FUNDS ============================== -->
+  <section>
+    <div class="wrap">
+      <h2>Exactly where the money goes</h2>
+      <p class="lead">$3,500–$5,000, spent entirely on being ready for August 19.</p>
+      <!-- ⚙️ EDIT ME: adjust amounts/lines to your real breakdown -->
+      <ul class="funds">
+        <li>
+          <span class="amt">$1,500</span>
+          <span class="desc"><strong>Demo polish &amp; focused build time</strong><span>Two clear weeks to harden the app and rehearse the live demo instead of taking on side work.</span></span>
+        </li>
+        <li>
+          <span class="amt">$1,200</span>
+          <span class="desc"><strong>Travel &amp; the meeting itself</strong><span>Getting there and back, and everything the day of the pitch requires.</span></span>
+        </li>
+        <li>
+          <span class="amt">$1,000</span>
+          <span class="desc"><strong>Pitch materials &amp; product assets</strong><span>Deck, printed leave-behind, and the polished dashboard views J&amp;J will see.</span></span>
+        </li>
+        <li>
+          <span class="amt">$800</span>
+          <span class="desc"><strong>Infrastructure &amp; API costs</strong><span>Hosting, the AI models, and data plumbing to keep the demo flawless under load.</span></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================== REPAYMENT ============================== -->
+  <section class="tight">
+    <div class="wrap">
+      <div class="terms">
+        <h2>💵 The repayment terms</h2>
+        <!-- ⚙️ EDIT ME: make this language exactly what you're comfortable committing to -->
+        <ul>
+          <li><strong>This is a loan, not a gift or an investment.</strong> You're not buying equity and you're not donating.</li>
+          <li><strong>Repaid in full</strong> — every dollar you lend comes back to you.</li>
+          <li><strong>By December 31, 2026</strong>, or sooner. If anything changes, I'll tell you before the date, not after.</li>
+          <li><strong>No interest.</strong> You're doing me a favor; I'm not going to make you chase a return for it.</li>
+          <li><strong>By whatever's easiest for you</strong> — Stripe, Venmo, Zelle, or a check. Your call.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== GIVE ============================== -->
+  <section id="give">
+    <div class="wrap">
+      <h2>Choose an amount</h2>
+      <p class="lead">Whatever's comfortable. Every bit shortens the runway.</p>
+      <div class="amounts" id="amounts">
+        <!-- filled by JS from CONFIG.links -->
+      </div>
+      <p class="disabled-note" id="linksNote"></p>
+    </div>
+  </section>
+
+  <!-- ============================== FAQ ============================== -->
+  <section class="tight faq">
+    <div class="wrap">
+      <h2>A few honest answers</h2>
+      <details>
+        <summary>What if the J&amp;J meeting doesn't lead anywhere?</summary>
+        <div class="answer">You still get paid back on the same terms. This loan is tied to me and my commitment to repay it — not to the outcome of any single meeting.</div>
+      </details>
+      <details>
+        <summary>Is this an investment in the company?</summary>
+        <div class="answer">No. To keep this simple and clean between friends, it's a personal loan. No equity, no ownership, no paperwork beyond a note from me confirming the amount and the payback date.</div>
+      </details>
+      <details>
+        <summary>Why not just use a credit card or a bank loan?</summary>
+        <div class="answer">I could, but I'd rather owe the people who believe in me at 0% than a bank at 24%. It also keeps me accountable to the folks who matter most.</div>
+      </details>
+      <details>
+        <summary>How do I get repaid?</summary>
+        <div class="answer">However's easiest for you — I'll reach out before the payback date to confirm the method and send it your way. I keep a simple ledger of everyone who helped.</div>
+      </details>
+      <details>
+        <summary>Is my payment secure?</summary>
+        <div class="answer">Yes. All payments run through Stripe, which handles card data directly. Your card number never touches this page or reaches me.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============================== CLOSING ============================== -->
+  <section class="tight">
+    <div class="wrap" style="text-align:center;">
+      <h2 style="margin-bottom:14px;">Thank you for even reading this far.</h2>
+      <p class="lead" style="margin-bottom:24px;">I'm not going to forget who was in my corner before the big room said yes. If you can help, it matters — and if you can't, no hard feelings at all.</p>
+      <div style="max-width:340px;margin:0 auto;">
+        <a href="#give" class="btn">Choose an amount →</a>
+      </div>
+      <p style="margin-top:16px;color:var(--slate);font-size:.95rem;">— Soren</p>
+    </div>
+  </section>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer>
+    <div class="wrap">
+      <div class="name">Soren DeOrlow</div>
+      <div>Founder, Recovery Tracker · <a href="mailto:soren@resonancepartners.us">soren@resonancepartners.us</a> · <a href="tel:+14152985431">415-298-5431</a></div>
+      <p class="disclaimer">
+        This page is a private request to friends and family. Any funds contributed are a <strong>personal, interest-free loan to Soren DeOrlow</strong>, to be repaid in full — <strong>not</strong> a charitable donation, gift, security, or investment, and they confer no equity, ownership, or expectation of financial return. Payments are processed securely by Stripe.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============================== STICKY CTA ============================== -->
+  <div class="sticky-cta" id="stickyCta">
+    <a href="#give" class="btn">Help Soren get to J&amp;J →</a>
+  </div>
+
+  <script>
+    (function () {
+      var C = window.CONFIG || {};
+      var fmt = function (n) { return "$" + Number(n).toLocaleString("en-US"); };
+
+      /* ---- Progress bar ---- */
+      var goal = C.goal || 5000;
+      var raised = C.raisedManual || 0;
+      var pct = Math.max(0, Math.min(100, Math.round((raised / goal) * 100)));
+      document.getElementById("raisedLabel").textContent = fmt(raised);
+      document.getElementById("goalLabel").textContent = "raised of " + fmt(goal) + " goal";
+      setTimeout(function () { document.getElementById("barFill").style.width = pct + "%"; }, 200);
+      if (C.supporters && C.supporters > 0) {
+        document.getElementById("supportersLabel").textContent =
+          "Already backed by " + C.supporters + (C.supporters === 1 ? " person" : " people") + " who believe in this.";
+      }
+
+      /* ---- Amount buttons from Stripe links ---- */
+      var tiers = [
+        { key: "250", label: "$250" },
+        { key: "500", label: "$500" },
+        { key: "1000", label: "$1,000" },
+        { key: "custom", label: "Custom", note: "You choose", custom: true }
+      ];
+      var container = document.getElementById("amounts");
+      var anyLink = false;
+      tiers.forEach(function (t) {
+        var url = (C.links && C.links[t.key]) || "";
+        var el = document.createElement(url ? "a" : "button");
+        el.className = "amt-btn" + (t.custom ? " custom" : "");
+        el.innerHTML = t.label + "<small>" + (t.custom ? "You choose" : "one-time") + "</small>";
+        if (url) {
+          anyLink = true;
+          el.href = url;
+        } else {
+          el.disabled = true;
+          el.style.opacity = ".45";
+          el.style.cursor = "not-allowed";
+        }
+        container.appendChild(el);
+      });
+      if (!anyLink) {
+        document.getElementById("linksNote").textContent =
+          "⚙️ Add your Stripe Payment Links in the CONFIG block at the top of index.html to activate these buttons.";
+      }
+
+      /* ---- Success banner ---- */
+      if (/[?&]success=true/.test(window.location.search)) {
+        var b = document.getElementById("successBanner");
+        b.classList.add("show");
+        window.scrollTo(0, 0);
+      }
+
+      /* ---- Sticky CTA: show after hero scrolls away, hide near the picker ---- */
+      var sticky = document.getElementById("stickyCta");
+      var give = document.getElementById("give");
+      window.addEventListener("scroll", function () {
+        var y = window.scrollY || window.pageYOffset;
+        var giveTop = give.getBoundingClientRect().top;
+        var past = y > 520;
+        var atPicker = giveTop < window.innerHeight && giveTop > -give.offsetHeight;
+        if (past && !atPicker) sticky.classList.add("show");
+        else sticky.classList.remove("show");
+      }, { passive: true });
+    })();
+  </script>
+</body>
+</html>
