@@ -151,7 +151,7 @@
     }
     .amt-btn small { display: block; font-size: .72rem; font-weight: 600; color: var(--slate); letter-spacing: .04em; text-transform: uppercase; margin-top: 4px; }
     .amt-btn:hover { border-color: var(--teal); background: var(--mint); transform: translateY(-2px); box-shadow: var(--shadow); }
-    .amt-btn.custom { color: var(--teal-d); }
+    .amt-btn.custom { color: var(--teal-d); grid-column: 1 / -1; }
     .disabled-note { font-size: .82rem; color: #b04b3f; text-align: center; margin-top: 4px; }
 
     /* ---- FAQ ---- */
@@ -400,26 +400,21 @@
 
       /* ---- Amount buttons from Stripe links ---- */
       var tiers = [
-        { key: "250", label: "$250" },
-        { key: "500", label: "$500" },
-        { key: "1000", label: "$1,000" },
-        { key: "custom", label: "Custom", note: "You choose", custom: true }
+        { key: "250", label: "$250", note: "one-time" },
+        { key: "500", label: "$500", note: "one-time" },
+        { key: "1000", label: "$1,000", note: "one-time" },
+        { key: "custom", label: "Contribute any amount", note: "You choose on the next page", custom: true }
       ];
       var container = document.getElementById("amounts");
       var anyLink = false;
       tiers.forEach(function (t) {
         var url = (C.links && C.links[t.key]) || "";
-        var el = document.createElement(url ? "a" : "button");
+        if (!url) return; // don't render tiers with no Stripe link
+        anyLink = true;
+        var el = document.createElement("a");
         el.className = "amt-btn" + (t.custom ? " custom" : "");
-        el.innerHTML = t.label + "<small>" + (t.custom ? "You choose" : "one-time") + "</small>";
-        if (url) {
-          anyLink = true;
-          el.href = url;
-        } else {
-          el.disabled = true;
-          el.style.opacity = ".45";
-          el.style.cursor = "not-allowed";
-        }
+        el.href = url;
+        el.innerHTML = t.label + "<small>" + t.note + "</small>";
         container.appendChild(el);
       });
       if (!anyLink) {
