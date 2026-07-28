@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A short-term loan to get Recovery Tracker in front of J&J</title>
-  <meta name="description" content="A personal, repayable loan to help Soren DeOrlow bring Recovery Tracker to a Johnson & Johnson pitch on August 19." />
+  <title>Recovery Tracker — Friends &amp; Family Bridge</title>
+  <meta name="description" content="A small, interest-free bridge to prepare Recovery Tracker for a Johnson & Johnson pitch on August 19. Clear terms, principal repaid in full by year-end." />
 
   <!-- ============================================================= -->
   <!--  ⚙️  EDIT ME:  Stripe Payment Links                            -->
@@ -117,15 +117,34 @@
     .bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--teal), #29c3ae); border-radius: 999px; width: 0; transition: width .8s ease; }
     .supporters { color: var(--slate); font-size: .95rem; }
 
+    /* ---- Stats strip (terms at a glance) ---- */
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 12px; text-align: center; box-shadow: var(--shadow); }
+    .stat .v { font-size: 1.3rem; font-weight: 760; color: var(--navy); letter-spacing: -0.01em; line-height: 1.1; }
+    .stat .l { font-size: .68rem; text-transform: uppercase; letter-spacing: .07em; color: var(--slate); margin-top: 6px; font-weight: 650; }
+    @media (max-width: 430px) { .stat .v { font-size: 1.05rem; } .stat { padding: 16px 8px; } }
+
     /* ---- Product ---- */
     .product-shot { border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow); margin-top: 22px; }
     .oneliner { font-size: 1.15rem; color: var(--ink); font-weight: 550; }
 
-    /* ---- Founder ---- */
-    .founder { display: flex; gap: 18px; align-items: center; margin-bottom: 26px; }
+    /* ---- Founder / credibility ---- */
+    .founder { display: flex; gap: 18px; align-items: center; margin-bottom: 20px; }
     .founder img { width: 76px; height: 76px; border-radius: 50%; object-fit: cover; flex: none; border: 3px solid #fff; box-shadow: var(--shadow); }
     .founder .name { font-weight: 700; color: var(--navy); font-size: 1.05rem; }
     .founder .role { color: var(--slate); font-size: .92rem; }
+    .credibility { color: #2b3b50; }
+    .credibility .clients { margin-top: 10px; font-size: .95rem; color: var(--slate); }
+    .credibility .clients strong { color: var(--navy); font-weight: 650; }
+
+    /* ---- Term sheet ---- */
+    .sheet { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); background: #fff; }
+    .sheet .row { display: flex; gap: 16px; padding: 15px 20px; border-bottom: 1px solid var(--line); }
+    .sheet .row:last-child { border-bottom: none; }
+    .sheet .row:nth-child(even) { background: #fafcfb; }
+    .sheet .k { flex: none; width: 118px; font-weight: 650; color: var(--navy); font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; padding-top: 2px; }
+    .sheet .val { color: var(--ink); flex: 1; }
+    @media (max-width: 430px) { .sheet .row { flex-direction: column; gap: 3px; } .sheet .k { width: auto; } }
 
     /* ---- Use of funds ---- */
     ul.funds { list-style: none; margin-top: 6px; }
@@ -210,20 +229,31 @@
 
   <!-- Success state (Stripe redirects here with ?success=true) -->
   <div class="success-banner" id="successBanner">
-    🎉 Thank you — your contribution came through. It means more than you know. I'll be in touch personally.
+    Thank you — your contribution came through. I'll follow up with a short note confirming the amount and repayment date.
   </div>
 
   <!-- ============================== HERO ============================== -->
   <header class="hero">
     <div class="wrap">
-      <span class="eyebrow">A personal ask · repayable</span>
-      <h1>Help me get Recovery Tracker in the room with Johnson &amp; Johnson.</h1>
-      <p class="sub">On August 19, I'm pitching the platform I've spent the last year building. I need a short runway to make it count — and I'll pay every dollar back.</p>
+      <span class="eyebrow">Friends &amp; Family · Interest-free bridge</span>
+      <h1>A short bridge to bring Recovery Tracker to Johnson &amp; Johnson.</h1>
+      <p class="sub">I'm raising a small, interest-free bridge from people I trust to prepare for a pitch on August 19. Clear terms, principal repaid in full by year-end.</p>
       <div class="cta-row">
-        <a href="#give" class="btn">See how you can help →</a>
+        <a href="#give" class="btn">Review the raise →</a>
       </div>
     </div>
   </header>
+
+  <!-- ============================== TERMS AT A GLANCE ============================== -->
+  <section class="tight">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><div class="v">$3.5–5K</div><div class="l">Bridge size</div></div>
+        <div class="stat"><div class="v">0%</div><div class="l">Interest</div></div>
+        <div class="stat"><div class="v">Dec 2026</div><div class="l">Repaid in full</div></div>
+      </div>
+    </div>
+  </section>
 
   <!-- ============================== PROGRESS ============================== -->
   <section class="tight">
@@ -231,7 +261,7 @@
       <div class="card progress-card">
         <div class="progress-nums">
           <span class="raised" id="raisedLabel">$0</span>
-          <span class="goal" id="goalLabel">raised of $5,000 goal</span>
+          <span class="goal" id="goalLabel">committed of $5,000 target</span>
         </div>
         <div class="bar"><span id="barFill"></span></div>
         <div class="supporters" id="supportersLabel"></div>
@@ -239,25 +269,34 @@
     </div>
   </section>
 
-  <!-- ============================== STORY ============================== -->
+  <!-- ============================== THE OPPORTUNITY ============================== -->
   <section class="story">
+    <div class="wrap">
+      <h2>The opportunity</h2>
+      <p class="lead">A concrete milestone, a working product, and a short runway to make it count.</p>
+
+      <p><strong>Recovery Tracker</strong> is a continuity-of-care platform for outpatient surgery. Roughly 90% of recovery happens at home, unsupervised — surgeons see a patient for a fifteen-minute follow-up while the real risks (infection, poor healing, missed instructions) play out over three weeks. Recovery Tracker closes that gap: an AI recovery assistant for patients and a real-time dashboard for surgeons.</p>
+
+      <p>The product is built and heading into a clinical pilot with a Beverly Hills plastic surgeon. On <strong>August 19, I'm presenting it to Johnson &amp; Johnson</strong> — the most significant conversation this project has had.</p>
+
+      <p>I've bootstrapped Recovery Tracker to this point. This is a small, short-term bridge to prepare for that meeting at full strength — not operating capital, just the last mile before a milestone. Every dollar is returned, on the terms below.</p>
+    </div>
+  </section>
+
+  <!-- ============================== WHO'S BEHIND IT ============================== -->
+  <section class="tight">
     <div class="wrap">
       <div class="founder">
         <img src="assets/founder-soren.png" alt="Soren DeOrlow" />
         <div>
           <div class="name">Soren DeOrlow</div>
-          <div class="role">Founder · Recovery Tracker</div>
+          <div class="role">Founder, Resonance Partners · Recovery Tracker</div>
         </div>
       </div>
-
-      <h2>Why I'm asking you specifically</h2>
-      <p class="lead">You're getting this because you know me — not because I'm running a campaign.</p>
-
-      <p>For the last year I've been building <strong>Recovery Tracker</strong>: software that watches over patients after outpatient surgery, when 90% of recovery happens at home and nobody is looking. Surgeons see their patients for fifteen minutes at a follow-up; the app is there for the other three weeks — flagging infection, poor healing, and anxiety before they become an ER visit.</p>
-
-      <p>It's real. There's a working product, an AI recovery assistant, and a pilot lined up with a Beverly Hills surgeon. Now the biggest door I've knocked on has cracked open: <strong>a meeting with Johnson &amp; Johnson on August 19.</strong></p>
-
-      <p>I've bootstrapped this the whole way. I don't want to walk into that room having cut corners on the last mile because of cash flow. That's the entire reason for this ask — a small, short-term bridge, from people I trust, to show up to this moment at full strength.</p>
+      <div class="credibility">
+        <p>Product design and strategy leader with 10 years at IDEO leading innovation work for Fortune 500 companies, now building consumer and healthcare AI products.</p>
+        <p class="clients">Selected client work through Resonance Partners: <strong>Stanford Medicine · UCSF Department of Surgery · Johnson &amp; Johnson · Athenahealth</strong>.</p>
+      </div>
     </div>
   </section>
 
@@ -273,8 +312,8 @@
   <!-- ============================== USE OF FUNDS ============================== -->
   <section>
     <div class="wrap">
-      <h2>Exactly where the money goes</h2>
-      <p class="lead">$3,500–$5,000, spent entirely on being ready for August 19.</p>
+      <h2>How the capital is used</h2>
+      <p class="lead">$3,500–$5,000, deployed entirely against the August 19 milestone.</p>
       <!-- ⚙️ EDIT ME: adjust amounts/lines to your real breakdown -->
       <ul class="funds">
         <li>
@@ -297,19 +336,19 @@
     </div>
   </section>
 
-  <!-- ============================== REPAYMENT ============================== -->
+  <!-- ============================== TERMS ============================== -->
   <section class="tight">
     <div class="wrap">
-      <div class="terms">
-        <h2>💵 The repayment terms</h2>
-        <!-- ⚙️ EDIT ME: make this language exactly what you're comfortable committing to -->
-        <ul>
-          <li><strong>This is a loan, not a gift or an investment.</strong> You're not buying equity and you're not donating.</li>
-          <li><strong>Repaid in full</strong> — every dollar you lend comes back to you.</li>
-          <li><strong>By December 31, 2026</strong>, or sooner. If anything changes, I'll tell you before the date, not after.</li>
-          <li><strong>No interest.</strong> You're doing me a favor; I'm not going to make you chase a return for it.</li>
-          <li><strong>By whatever's easiest for you</strong> — Stripe, Venmo, Zelle, or a check. Your call.</li>
-        </ul>
+      <h2>Terms</h2>
+      <p class="lead">Simple, written down, and the same for everyone.</p>
+      <!-- ⚙️ EDIT ME: make this language exactly what you're comfortable committing to -->
+      <div class="sheet">
+        <div class="row"><div class="k">Instrument</div><div class="val">Personal, interest-free loan. Not equity, not a donation, not an investment.</div></div>
+        <div class="row"><div class="k">Amount</div><div class="val">Any amount you choose. Total target of $5,000.</div></div>
+        <div class="row"><div class="k">Interest</div><div class="val">0%.</div></div>
+        <div class="row"><div class="k">Repayment</div><div class="val">Full principal returned by December 31, 2026, or sooner.</div></div>
+        <div class="row"><div class="k">Method</div><div class="val">Stripe, Venmo, Zelle, or check — whichever you prefer.</div></div>
+        <div class="row"><div class="k">Documentation</div><div class="val">A short written note from me confirming your amount and the repayment date.</div></div>
       </div>
     </div>
   </section>
@@ -317,8 +356,8 @@
   <!-- ============================== GIVE ============================== -->
   <section id="give">
     <div class="wrap">
-      <h2>Choose an amount</h2>
-      <p class="lead">Whatever's comfortable. Every bit shortens the runway.</p>
+      <h2>Take part</h2>
+      <p class="lead">Contribute any amount below. It goes straight to a secure Stripe checkout.</p>
       <div class="amounts" id="amounts">
         <!-- filled by JS from CONFIG.links -->
       </div>
@@ -329,26 +368,22 @@
   <!-- ============================== FAQ ============================== -->
   <section class="tight faq">
     <div class="wrap">
-      <h2>A few honest answers</h2>
+      <h2>Questions you might have</h2>
       <details>
-        <summary>What if the J&amp;J meeting doesn't lead anywhere?</summary>
-        <div class="answer">You still get paid back on the same terms. This loan is tied to me and my commitment to repay it — not to the outcome of any single meeting.</div>
+        <summary>What exactly am I agreeing to?</summary>
+        <div class="answer">An interest-free personal loan, repaid in full by December 31, 2026. You'll get a short written note from me confirming your amount and the repayment date. No equity, no donation, no ongoing obligation.</div>
       </details>
       <details>
-        <summary>Is this an investment in the company?</summary>
-        <div class="answer">No. To keep this simple and clean between friends, it's a personal loan. No equity, no ownership, no paperwork beyond a note from me confirming the amount and the payback date.</div>
+        <summary>What if the J&amp;J meeting doesn't convert?</summary>
+        <div class="answer">Repayment isn't tied to any single outcome. The loan stands on its own terms and my commitment to repay it, regardless of how the pitch lands.</div>
       </details>
       <details>
-        <summary>Why not just use a credit card or a bank loan?</summary>
-        <div class="answer">I could, but I'd rather owe the people who believe in me at 0% than a bank at 24%. It also keeps me accountable to the folks who matter most.</div>
-      </details>
-      <details>
-        <summary>How do I get repaid?</summary>
-        <div class="answer">However's easiest for you — I'll reach out before the payback date to confirm the method and send it your way. I keep a simple ledger of everyone who helped.</div>
+        <summary>How and when am I repaid?</summary>
+        <div class="answer">Full principal by December 31, 2026, or sooner. I'll confirm your preferred method before the date and keep a ledger of every contribution.</div>
       </details>
       <details>
         <summary>Is my payment secure?</summary>
-        <div class="answer">Yes. All payments run through Stripe, which handles card data directly. Your card number never touches this page or reaches me.</div>
+        <div class="answer">Yes. Payments are processed by Stripe, which handles card data directly. Your card number never touches this page or reaches me.</div>
       </details>
     </div>
   </section>
@@ -356,12 +391,12 @@
   <!-- ============================== CLOSING ============================== -->
   <section class="tight">
     <div class="wrap" style="text-align:center;">
-      <h2 style="margin-bottom:14px;">Thank you for even reading this far.</h2>
-      <p class="lead" style="margin-bottom:24px;">I'm not going to forget who was in my corner before the big room said yes. If you can help, it matters — and if you can't, no hard feelings at all.</p>
+      <h2 style="margin-bottom:14px;">Back the raise</h2>
+      <p class="lead" style="margin-bottom:24px;">If you'd like to help bring Recovery Tracker into that room, you can contribute any amount below. Thank you for considering it.</p>
       <div style="max-width:340px;margin:0 auto;">
-        <a href="#give" class="btn">Choose an amount →</a>
+        <a href="#give" class="btn">Contribute any amount →</a>
       </div>
-      <p style="margin-top:16px;color:var(--slate);font-size:.95rem;">— Soren</p>
+      <p style="margin-top:16px;color:var(--slate);font-size:.95rem;">— Soren DeOrlow</p>
     </div>
   </section>
 
@@ -369,7 +404,7 @@
   <footer>
     <div class="wrap">
       <div class="name">Soren DeOrlow</div>
-      <div>Founder, Recovery Tracker · <a href="mailto:soren@resonancepartners.us">soren@resonancepartners.us</a> · <a href="tel:+14152985431">415-298-5431</a></div>
+      <div>Founder, Resonance Partners · Recovery Tracker · <a href="mailto:soren@resonancepartners.us">soren@resonancepartners.us</a> · <a href="tel:+14152985431">415-298-5431</a></div>
       <p class="disclaimer">
         This page is a private request to friends and family. Any funds contributed are a <strong>personal, interest-free loan to Soren DeOrlow</strong>, to be repaid in full — <strong>not</strong> a charitable donation, gift, security, or investment, and they confer no equity, ownership, or expectation of financial return. Payments are processed securely by Stripe.
       </p>
@@ -378,7 +413,7 @@
 
   <!-- ============================== STICKY CTA ============================== -->
   <div class="sticky-cta" id="stickyCta">
-    <a href="#give" class="btn">Help Soren get to J&amp;J →</a>
+    <a href="#give" class="btn">Back the raise →</a>
   </div>
 
   <script>
@@ -391,11 +426,11 @@
       var raised = C.raisedManual || 0;
       var pct = Math.max(0, Math.min(100, Math.round((raised / goal) * 100)));
       document.getElementById("raisedLabel").textContent = fmt(raised);
-      document.getElementById("goalLabel").textContent = "raised of " + fmt(goal) + " goal";
+      document.getElementById("goalLabel").textContent = "committed of " + fmt(goal) + " target";
       setTimeout(function () { document.getElementById("barFill").style.width = pct + "%"; }, 200);
       if (C.supporters && C.supporters > 0) {
         document.getElementById("supportersLabel").textContent =
-          "Already backed by " + C.supporters + (C.supporters === 1 ? " person" : " people") + " who believe in this.";
+          C.supporters + (C.supporters === 1 ? " participant" : " participants") + " so far.";
       }
 
       /* ---- Amount buttons from Stripe links ---- */
