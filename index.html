@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Recovery Tracker — Friends &amp; Family Bridge</title>
-  <meta name="description" content="A small, interest-free bridge to prepare Recovery Tracker for a Johnson & Johnson pitch on August 19. Clear terms, principal repaid in full by year-end." />
+  <meta name="description" content="A small, short-term bridge to bring Recovery Tracker to its first clinical launch. Clear terms; principal plus 5% interest repaid in full by year-end." />
 
   <!-- ============================================================= -->
   <!--  ⚙️  EDIT ME:  Stripe Payment Links                            -->
@@ -149,15 +149,15 @@
 
     /* ---- Repayment calculator ---- */
     .calc { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
-    .calc .chips { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
-    .calc .chip { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 8px 16px; font-weight: 600; color: var(--navy); cursor: pointer; font-size: .9rem; transition: all .12s ease; }
-    .calc .chip:hover { border-color: var(--teal); }
-    .calc .chip.active { border-color: var(--teal); background: var(--mint); color: var(--teal-d); }
-    .calc .field { display: flex; align-items: center; border: 1.5px solid var(--line); border-radius: 12px; padding: 2px 14px; margin-bottom: 20px; transition: border-color .12s ease; }
-    .calc .field:focus-within { border-color: var(--teal); }
-    .calc .field .cur { font-size: 1.5rem; font-weight: 750; color: var(--slate); }
-    .calc .field input { border: none; outline: none; background: none; font-size: 1.7rem; font-weight: 750; color: var(--navy); width: 100%; padding: 12px 6px; -moz-appearance: textfield; font-family: inherit; }
-    .calc .field input::-webkit-outer-spin-button, .calc .field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .calc .amount-display { text-align: center; margin-bottom: 4px; }
+    .calc .amount-display .big { font-size: 2.7rem; font-weight: 790; color: var(--navy); letter-spacing: -0.02em; line-height: 1.1; }
+    .calc .amount-display .cap { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--slate); font-weight: 650; margin-top: 2px; }
+    .calc .range-wrap { padding: 14px 0 4px; margin-bottom: 16px; }
+    .calc input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 999px; background: var(--mint); outline: none; cursor: pointer; }
+    .calc input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 3px solid var(--teal); box-shadow: 0 2px 6px rgba(10,20,40,.22); cursor: pointer; }
+    .calc input[type=range]::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 3px solid var(--teal); box-shadow: 0 2px 6px rgba(10,20,40,.22); cursor: pointer; }
+    .calc input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px rgba(15,157,143,.25); }
+    .calc .range-ends { display: flex; justify-content: space-between; font-size: .8rem; color: var(--slate); margin-top: 8px; font-weight: 600; }
     .calc .out .line { display: flex; justify-content: space-between; align-items: baseline; padding: 7px 0; color: var(--slate); }
     .calc .out .line .v { font-weight: 650; color: var(--ink); }
     .calc .out .line.total { border-top: 1px solid var(--line); margin-top: 8px; padding-top: 15px; font-size: 1.3rem; font-weight: 760; color: var(--navy); }
@@ -254,8 +254,8 @@
   <header class="hero">
     <div class="wrap">
       <span class="eyebrow">Friends &amp; Family Bridge · 5% interest</span>
-      <h1>A short bridge to bring Recovery Tracker to Johnson &amp; Johnson.</h1>
-      <p class="sub">Recovery Tracker is raising a small, short-term bridge to prepare for a Johnson &amp; Johnson pitch on August 19. Clear terms; principal plus 5% interest repaid in full by year-end.</p>
+      <h1>A short bridge to Recovery Tracker's clinical launch.</h1>
+      <p class="sub">Recovery Tracker is raising a small, short-term bridge to reach its first clinical launch. Clear terms; principal plus 5% interest repaid in full by year-end.</p>
       <div class="cta-row">
         <a href="#give" class="btn">Review the raise →</a>
       </div>
@@ -295,9 +295,9 @@
 
       <p><strong>Recovery Tracker</strong> is a continuity-of-care platform for outpatient surgery. Roughly 90% of recovery happens at home, unsupervised — surgeons see a patient for a fifteen-minute follow-up while the real risks (infection, poor healing, missed instructions) play out over three weeks. Recovery Tracker closes that gap: an AI recovery assistant for patients and a real-time dashboard for surgeons.</p>
 
-      <p>The product is built and heading into a clinical pilot with a Beverly Hills plastic surgeon. On <strong>August 19, the platform will be presented to Johnson &amp; Johnson</strong> — the most significant conversation this project has had.</p>
+      <p>The product is built and entering its <strong>first clinical pilot with a Beverly Hills plastic surgery practice</strong> — the platform's clinical launch, and the milestone this raise is built around.</p>
 
-      <p>Recovery Tracker has been bootstrapped to this point. This raise is a small, short-term bridge to prepare for that meeting at full strength — not operating capital, only the last mile before a milestone. Principal plus 5% interest is returned in full, on the terms below.</p>
+      <p>Recovery Tracker has been bootstrapped to this point. This raise is a small, short-term bridge to reach launch at full strength — not operating capital, only the last mile before going live. Principal plus 5% interest is returned in full, on the terms below.</p>
     </div>
   </section>
 
@@ -313,7 +313,7 @@
       </div>
       <div class="credibility">
         <p>Product design and strategy leader with 10 years at IDEO leading innovation work for Fortune 500 companies, now building consumer and healthcare AI products.</p>
-        <p class="clients">Selected client work through Resonance Partners: <strong>Stanford Medicine · UCSF Department of Surgery · Johnson &amp; Johnson · Athenahealth</strong>.</p>
+        <p class="clients">Selected client work through Resonance Partners: <strong>Stanford Medicine · UCSF Department of Surgery · Athenahealth</strong>.</p>
       </div>
     </div>
   </section>
@@ -331,24 +331,24 @@
   <section>
     <div class="wrap">
       <h2>How the capital is used</h2>
-      <p class="lead">$3,500–$5,000, deployed entirely against the August 19 milestone.</p>
+      <p class="lead">$3,500–$5,000, deployed entirely toward reaching clinical launch.</p>
       <!-- ⚙️ EDIT ME: adjust amounts/lines to your real breakdown -->
       <ul class="funds">
         <li>
           <span class="amt">$1,500</span>
-          <span class="desc"><strong>Demo polish &amp; focused build time</strong><span>Two clear weeks to harden the app and rehearse the live demo instead of taking on side work.</span></span>
+          <span class="desc"><strong>Focused build &amp; launch readiness</strong><span>Two clear weeks to harden the app for live clinical use instead of taking on side work.</span></span>
         </li>
         <li>
           <span class="amt">$1,200</span>
-          <span class="desc"><strong>Travel &amp; the meeting itself</strong><span>Getting there and back, and everything the day of the pitch requires.</span></span>
+          <span class="desc"><strong>Onboarding the launch partner</strong><span>Time on-site with the practice to set up, train staff, and go live.</span></span>
         </li>
         <li>
           <span class="amt">$1,000</span>
-          <span class="desc"><strong>Pitch materials &amp; product assets</strong><span>Deck, printed leave-behind, and the polished dashboard views J&amp;J will see.</span></span>
+          <span class="desc"><strong>Launch materials &amp; product assets</strong><span>Onboarding guides, patient-facing materials, and polished dashboard views for the practice.</span></span>
         </li>
         <li>
           <span class="amt">$800</span>
-          <span class="desc"><strong>Infrastructure &amp; API costs</strong><span>Hosting, the AI models, and data plumbing to keep the demo flawless under load.</span></span>
+          <span class="desc"><strong>Infrastructure &amp; API costs</strong><span>Hosting, the AI models, and data plumbing to run reliably with real patients.</span></span>
         </li>
       </ul>
     </div>
@@ -377,15 +377,14 @@
       <h2>What you'll be repaid</h2>
       <p class="lead">Enter an amount to see the interest and total returned by December 31, 2026.</p>
       <div class="calc">
-        <div class="chips" id="calcChips">
-          <button type="button" class="chip" data-amt="250">$250</button>
-          <button type="button" class="chip active" data-amt="500">$500</button>
-          <button type="button" class="chip" data-amt="1000">$1,000</button>
+        <div class="amount-display">
+          <div class="big" id="calcAmount">$500</div>
+          <div class="cap">Loan amount</div>
         </div>
-        <label class="field">
-          <span class="cur">$</span>
-          <input id="calcInput" type="number" inputmode="numeric" min="0" step="50" value="500" aria-label="Contribution amount" />
-        </label>
+        <div class="range-wrap">
+          <input id="calcSlider" type="range" min="25" max="5000" step="25" value="500" aria-label="Loan amount" />
+          <div class="range-ends"><span>$25</span><span>$5,000</span></div>
+        </div>
         <div class="out">
           <div class="line"><span>Your contribution</span><span class="v" id="calcPrincipal">$500</span></div>
           <div class="line"><span>Interest (<span id="calcRate">5%</span>)</span><span class="v" id="calcInterest">$25</span></div>
@@ -417,8 +416,8 @@
         <div class="answer">A personal loan to Soren DeOrlow at 5% interest, repaid in full by December 31, 2026. Each participant receives a short written note confirming their amount, the interest, and the repayment date. No equity, no donation, no ongoing obligation.</div>
       </details>
       <details>
-        <summary>What if the J&amp;J meeting doesn't convert?</summary>
-        <div class="answer">Repayment is not tied to any single outcome. The loan stands on its own terms regardless of how the pitch lands.</div>
+        <summary>What if the clinical launch is delayed?</summary>
+        <div class="answer">Repayment is not tied to any launch timeline or outcome. The loan stands on its own terms regardless.</div>
       </details>
       <details>
         <summary>How and when is repayment made?</summary>
@@ -500,15 +499,15 @@
           "⚙️ Add your Stripe Payment Links in the CONFIG block at the top of index.html to activate these buttons.";
       }
 
-      /* ---- Repayment calculator ---- */
+      /* ---- Repayment calculator (slider) ---- */
       (function () {
         var rate = (C.interestRate != null) ? C.interestRate : 0.05;
-        var input = document.getElementById("calcInput");
-        if (!input) return;
+        var slider = document.getElementById("calcSlider");
+        if (!slider) return;
         var pctText = (Math.round(rate * 1000) / 10) + "%";
         document.getElementById("calcRate").textContent = pctText;
         document.getElementById("calcRateNote").textContent = pctText;
-        var chips = [].slice.call(document.querySelectorAll("#calcChips .chip"));
+        var min = parseFloat(slider.min), max = parseFloat(slider.max);
         function money(n) {
           var r = Math.round(n * 100) / 100;
           return "$" + r.toLocaleString("en-US", {
@@ -516,22 +515,17 @@
           });
         }
         function render() {
-          var p = Math.max(0, parseFloat(input.value) || 0);
+          var p = parseFloat(slider.value) || 0;
           var interest = p * rate;
+          document.getElementById("calcAmount").textContent = money(p);
           document.getElementById("calcPrincipal").textContent = money(p);
           document.getElementById("calcInterest").textContent = money(interest);
           document.getElementById("calcTotal").textContent = money(p + interest);
-          chips.forEach(function (c) {
-            c.classList.toggle("active", parseFloat(c.getAttribute("data-amt")) === p);
-          });
+          var fill = ((p - min) / (max - min)) * 100;
+          slider.style.background =
+            "linear-gradient(90deg, var(--teal) 0%, var(--teal) " + fill + "%, var(--mint) " + fill + "%, var(--mint) 100%)";
         }
-        input.addEventListener("input", render);
-        chips.forEach(function (c) {
-          c.addEventListener("click", function () {
-            input.value = c.getAttribute("data-amt");
-            render();
-          });
-        });
+        slider.addEventListener("input", render);
         render();
       })();
 
