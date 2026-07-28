@@ -18,6 +18,7 @@
       goal: 5000,          // fundraising goal in dollars
       raisedManual: 0,     // update by hand after each contribution
       supporters: 0,       // number of people who've helped (0 hides social proof)
+      interestRate: 0.05,  // flat interest on principal (0.05 = 5%)
       links: {
         "250":    "",      // e.g. "https://buy.stripe.com/xxxxx"
         "500":    "",
@@ -146,6 +147,23 @@
     .sheet .val { color: var(--ink); flex: 1; }
     @media (max-width: 430px) { .sheet .row { flex-direction: column; gap: 3px; } .sheet .k { width: auto; } }
 
+    /* ---- Repayment calculator ---- */
+    .calc { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+    .calc .chips { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+    .calc .chip { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 8px 16px; font-weight: 600; color: var(--navy); cursor: pointer; font-size: .9rem; transition: all .12s ease; }
+    .calc .chip:hover { border-color: var(--teal); }
+    .calc .chip.active { border-color: var(--teal); background: var(--mint); color: var(--teal-d); }
+    .calc .field { display: flex; align-items: center; border: 1.5px solid var(--line); border-radius: 12px; padding: 2px 14px; margin-bottom: 20px; transition: border-color .12s ease; }
+    .calc .field:focus-within { border-color: var(--teal); }
+    .calc .field .cur { font-size: 1.5rem; font-weight: 750; color: var(--slate); }
+    .calc .field input { border: none; outline: none; background: none; font-size: 1.7rem; font-weight: 750; color: var(--navy); width: 100%; padding: 12px 6px; -moz-appearance: textfield; font-family: inherit; }
+    .calc .field input::-webkit-outer-spin-button, .calc .field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .calc .out .line { display: flex; justify-content: space-between; align-items: baseline; padding: 7px 0; color: var(--slate); }
+    .calc .out .line .v { font-weight: 650; color: var(--ink); }
+    .calc .out .line.total { border-top: 1px solid var(--line); margin-top: 8px; padding-top: 15px; font-size: 1.3rem; font-weight: 760; color: var(--navy); }
+    .calc .out .line.total .v { color: var(--teal-d); }
+    .calc .note { margin-top: 16px; font-size: .85rem; color: var(--slate); }
+
     /* ---- Use of funds ---- */
     ul.funds { list-style: none; margin-top: 6px; }
     ul.funds li { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); }
@@ -235,9 +253,9 @@
   <!-- ============================== HERO ============================== -->
   <header class="hero">
     <div class="wrap">
-      <span class="eyebrow">Friends &amp; Family · Interest-free bridge</span>
+      <span class="eyebrow">Friends &amp; Family Bridge · 5% interest</span>
       <h1>A short bridge to bring Recovery Tracker to Johnson &amp; Johnson.</h1>
-      <p class="sub">Recovery Tracker is raising a small, interest-free bridge to prepare for a Johnson &amp; Johnson pitch on August 19. Clear terms; principal repaid in full by year-end.</p>
+      <p class="sub">Recovery Tracker is raising a small, short-term bridge to prepare for a Johnson &amp; Johnson pitch on August 19. Clear terms; principal plus 5% interest repaid in full by year-end.</p>
       <div class="cta-row">
         <a href="#give" class="btn">Review the raise →</a>
       </div>
@@ -249,7 +267,7 @@
     <div class="wrap">
       <div class="stats">
         <div class="stat"><div class="v">$3.5–5K</div><div class="l">Bridge size</div></div>
-        <div class="stat"><div class="v">0%</div><div class="l">Interest</div></div>
+        <div class="stat"><div class="v">5%</div><div class="l">Interest</div></div>
         <div class="stat"><div class="v">Dec 2026</div><div class="l">Repaid in full</div></div>
       </div>
     </div>
@@ -279,7 +297,7 @@
 
       <p>The product is built and heading into a clinical pilot with a Beverly Hills plastic surgeon. On <strong>August 19, the platform will be presented to Johnson &amp; Johnson</strong> — the most significant conversation this project has had.</p>
 
-      <p>Recovery Tracker has been bootstrapped to this point. This raise is a small, short-term bridge to prepare for that meeting at full strength — not operating capital, only the last mile before a milestone. Principal is returned in full, on the terms below.</p>
+      <p>Recovery Tracker has been bootstrapped to this point. This raise is a small, short-term bridge to prepare for that meeting at full strength — not operating capital, only the last mile before a milestone. Principal plus 5% interest is returned in full, on the terms below.</p>
     </div>
   </section>
 
@@ -345,10 +363,35 @@
       <div class="sheet">
         <div class="row"><div class="k">Instrument</div><div class="val">Personal, interest-free loan. Not equity, not a donation, not an investment.</div></div>
         <div class="row"><div class="k">Amount</div><div class="val">Any amount you choose. Total target of $5,000.</div></div>
-        <div class="row"><div class="k">Interest</div><div class="val">0%.</div></div>
-        <div class="row"><div class="k">Repayment</div><div class="val">Full principal returned by December 31, 2026, or sooner.</div></div>
+        <div class="row"><div class="k">Interest</div><div class="val">5% flat, applied to the amount contributed.</div></div>
+        <div class="row"><div class="k">Repayment</div><div class="val">Full principal plus 5% interest returned by December 31, 2026, or sooner.</div></div>
         <div class="row"><div class="k">Method</div><div class="val">Stripe, Venmo, Zelle, or check — whichever you prefer.</div></div>
         <div class="row"><div class="k">Documentation</div><div class="val">A short written note confirming each participant's amount and the repayment date.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== CALCULATOR ============================== -->
+  <section class="tight">
+    <div class="wrap">
+      <h2>What you'll be repaid</h2>
+      <p class="lead">Enter an amount to see the interest and total returned by December 31, 2026.</p>
+      <div class="calc">
+        <div class="chips" id="calcChips">
+          <button type="button" class="chip" data-amt="250">$250</button>
+          <button type="button" class="chip active" data-amt="500">$500</button>
+          <button type="button" class="chip" data-amt="1000">$1,000</button>
+        </div>
+        <label class="field">
+          <span class="cur">$</span>
+          <input id="calcInput" type="number" inputmode="numeric" min="0" step="50" value="500" aria-label="Contribution amount" />
+        </label>
+        <div class="out">
+          <div class="line"><span>Your contribution</span><span class="v" id="calcPrincipal">$500</span></div>
+          <div class="line"><span>Interest (<span id="calcRate">5%</span>)</span><span class="v" id="calcInterest">$25</span></div>
+          <div class="line total"><span>Repaid to you</span><span class="v" id="calcTotal">$525</span></div>
+        </div>
+        <p class="note">A flat <span id="calcRateNote">5%</span> on the amount contributed, repaid in full by December 31, 2026, or sooner.</p>
       </div>
     </div>
   </section>
@@ -371,7 +414,7 @@
       <h2>Questions you might have</h2>
       <details>
         <summary>What is the arrangement?</summary>
-        <div class="answer">An interest-free personal loan to Soren DeOrlow, repaid in full by December 31, 2026. Each participant receives a short written note confirming their amount and the repayment date. No equity, no donation, no ongoing obligation.</div>
+        <div class="answer">A personal loan to Soren DeOrlow at 5% interest, repaid in full by December 31, 2026. Each participant receives a short written note confirming their amount, the interest, and the repayment date. No equity, no donation, no ongoing obligation.</div>
       </details>
       <details>
         <summary>What if the J&amp;J meeting doesn't convert?</summary>
@@ -379,7 +422,7 @@
       </details>
       <details>
         <summary>How and when is repayment made?</summary>
-        <div class="answer">Full principal by December 31, 2026, or sooner. Preferred method is confirmed before the date, and a ledger of all contributions is maintained.</div>
+        <div class="answer">Full principal plus 5% interest by December 31, 2026, or sooner. Preferred method is confirmed before the date, and a ledger of all contributions is maintained.</div>
       </details>
       <details>
         <summary>Is payment secure?</summary>
@@ -406,7 +449,7 @@
       <div class="name">Soren DeOrlow</div>
       <div>Founder, Resonance Partners · Recovery Tracker · <a href="mailto:soren@resonancepartners.us">soren@resonancepartners.us</a> · <a href="tel:+14152985431">415-298-5431</a></div>
       <p class="disclaimer">
-        This page is a private request to friends and family. Any funds contributed are a <strong>personal, interest-free loan to Soren DeOrlow</strong>, to be repaid in full — <strong>not</strong> a charitable donation, gift, security, or investment, and they confer no equity, ownership, or expectation of financial return. Payments are processed securely by Stripe.
+        This page is a private request to friends and family. Any funds contributed are a <strong>personal, interest-bearing loan to Soren DeOrlow</strong>, to be repaid in full with 5% interest by December 31, 2026 — <strong>not</strong> a charitable donation, gift, or equity investment, and they confer no ownership stake. Payments are processed securely by Stripe.
       </p>
     </div>
   </footer>
@@ -456,6 +499,41 @@
         document.getElementById("linksNote").textContent =
           "⚙️ Add your Stripe Payment Links in the CONFIG block at the top of index.html to activate these buttons.";
       }
+
+      /* ---- Repayment calculator ---- */
+      (function () {
+        var rate = (C.interestRate != null) ? C.interestRate : 0.05;
+        var input = document.getElementById("calcInput");
+        if (!input) return;
+        var pctText = (Math.round(rate * 1000) / 10) + "%";
+        document.getElementById("calcRate").textContent = pctText;
+        document.getElementById("calcRateNote").textContent = pctText;
+        var chips = [].slice.call(document.querySelectorAll("#calcChips .chip"));
+        function money(n) {
+          var r = Math.round(n * 100) / 100;
+          return "$" + r.toLocaleString("en-US", {
+            minimumFractionDigits: (r % 1 ? 2 : 0), maximumFractionDigits: 2
+          });
+        }
+        function render() {
+          var p = Math.max(0, parseFloat(input.value) || 0);
+          var interest = p * rate;
+          document.getElementById("calcPrincipal").textContent = money(p);
+          document.getElementById("calcInterest").textContent = money(interest);
+          document.getElementById("calcTotal").textContent = money(p + interest);
+          chips.forEach(function (c) {
+            c.classList.toggle("active", parseFloat(c.getAttribute("data-amt")) === p);
+          });
+        }
+        input.addEventListener("input", render);
+        chips.forEach(function (c) {
+          c.addEventListener("click", function () {
+            input.value = c.getAttribute("data-amt");
+            render();
+          });
+        });
+        render();
+      })();
 
       /* ---- Success banner ---- */
       if (/[?&]success=true/.test(window.location.search)) {
